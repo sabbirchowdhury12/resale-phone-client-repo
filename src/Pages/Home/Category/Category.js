@@ -10,7 +10,6 @@ const Category = () => {
         queryFn: () => fetch('http://localhost:5000/category')
             .then(res => res.json())
     });
-    console.log(categories);
 
     if (isLoading) {
         return <Loading />;
