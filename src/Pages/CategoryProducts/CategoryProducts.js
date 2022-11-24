@@ -1,10 +1,13 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookPhone from './BookPhone';
 import Loading from '../Share/Loading/Loading';
 import CategoryProduct from './CategoryProduct';
+import { useState } from 'react';
 
 const CategoryProducts = () => {
     const products = useLoaderData();
+    const [product, setProduct] = useState(null);
 
     if (!products.length) {
         return <Loading />;
@@ -15,9 +18,15 @@ const CategoryProducts = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-20'>
 
                 {
-                    products?.map(product => <CategoryProduct key={product._id} product={product} />)
+                    products?.map(product => <CategoryProduct key={product._id} product={product} setProduct={setProduct} />)
                 }
             </div>
+
+            {
+                product && <>
+                    <BookPhone product={product} setProduct={setProduct} />
+                </>
+            }
         </div>
     );
 };

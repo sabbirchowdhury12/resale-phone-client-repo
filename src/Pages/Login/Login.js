@@ -7,7 +7,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { login } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
