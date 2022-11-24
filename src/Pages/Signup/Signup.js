@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Signup = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('');
+    const { signupWithEmail, updateUser } = useContext(AuthContext);
 
     const handleSignUp = (data) => {
-        console.log(data);
+        signupWithEmail(data.email, data.password)
+            .then(() => {
+                toast.success('Successfully register!');
+                const userInfo = {
+                    displayName: data.name
+                };
+                updateUser(userInfo)
+                    .then((result) => {
+                        const user = result.user;
+                        console.log(user);
+                    }).catch(error => {
+                        console.error(error);
+                        setSignUPError(error.message);
+                    });
+            }).catch(error => {
+                console.log(error);
+                setSignUPError(error.message);
+                toast.error('register failed');
+            });
     };
     return (
         <div className='h-[800px] flex justify-center items-center'>
