@@ -1,14 +1,17 @@
 [
     {
         "category_id": "01",
-        "category_name": "Redmi"
+        "category_name": "Xiaomi",
+        "logo": "https://1.bp.blogspot.com/-WS2H_WBWwLg/YGxrklzAYsI/AAAAAAAASu4/4KE-pPcV1PwbwAUdI9_4IoDj56Ufe5-bwCLcBGAsYHQ/s0/Xiaomi%2B%25282021%2529%2BLogo%2B-%2BDownload%2BFree%2BVector%2BPNG.png"
     },
     {
         "category_id": "02",
-        "category_name": "Symphony"
+        "category_name": "Symphony",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/1/10/Symphony_Logo.png"
     },
     {
         "category_id": "03",
-        "category_name": "Xiaomi"
+        "category_name": "i-Phone",
+        "logo": "https://w7.pngwing.com/pngs/664/673/png-transparent-apple-logo-iphone-computer-apple-logo-company-heart-logo.png"
     }
 ]
