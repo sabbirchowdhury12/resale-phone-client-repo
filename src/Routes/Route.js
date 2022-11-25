@@ -57,23 +57,23 @@ export const router = createBrowserRouter([
                 element: <DashBoard />
             },
             {
-                path: '/dashboard/seller/addproduct',
+                path: '/dashboard/addproduct',
                 element: <SellerRoute><AddProduct /></SellerRoute>
             },
             {
-                path: '/dashboard/seller/products',
+                path: '/dashboard/products',
                 element: <SellerRoute><MyProducts /></SellerRoute>
             },
             {
-                path: '/dashboard/buyer/myorders',
+                path: '/dashboard/myorders',
                 element: <BuyerRoute><MyOrders /></BuyerRoute>
             },
             {
-                path: '/dashboard/admin/allsellers',
+                path: '/dashboard/allsellers',
                 element: <AdminRoute><AllSeller /></AdminRoute>
             },
             {
-                path: '/dashboard/admin/allbuyers',
+                path: '/dashboard/allbuyers',
                 element: <AdminRoute><AllBuyer /></AdminRoute>
             }
 
