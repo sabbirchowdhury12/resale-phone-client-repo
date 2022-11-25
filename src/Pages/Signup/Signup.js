@@ -7,7 +7,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Signup = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('');
     const { signupWithEmail, updateUser } = useContext(AuthContext);
 
@@ -20,8 +20,7 @@ const Signup = () => {
                 };
                 updateUser(userInfo)
                     .then((result) => {
-                        const user = result.user;
-                        console.log(user);
+                        saveUser(data.name, data.email, data.role);
                     }).catch(error => {
                         console.error(error);
                         setSignUPError(error.message);
@@ -32,6 +31,32 @@ const Signup = () => {
                 toast.error('register failed');
             });
     };
+
+    const saveUser = (name, email, role) => {
+
+        const user = {
+            name,
+            email,
+            role,
+        };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+
+
+    };
+
+
+
     return (
         <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7'>
@@ -40,7 +65,7 @@ const Signup = () => {
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Email</span></label>
-                        <select className="input input-bordered w-full max-w-xs" {...register("status", { required: true })}>
+                        <select className="input input-bordered w-full max-w-xs" {...register("role", { required: true })}>
 
                             <option defaultValue value="buyer">Buyer</option>
                             <option value="seller">Seller</option>
