@@ -1,12 +1,13 @@
 import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const imageHostKey = "8fd3dbe5918be63ad82f01b3fb69d14a";
 
     const handleAddProduct = (event) => {
@@ -62,10 +63,10 @@ const AddProduct = () => {
                         body: JSON.stringify(product)
                     })
                         .then(res => res.json())
-                        .then(result => {
-                            console.log(result);
+                        .then(data => {
+                            console.log(data);
                             toast.success(`Product is added successfully`);
-                            Navigate('/dashboard/myProduts');
+                            navigate('/dashboard/myProduts');
                         });
                 }
             });
