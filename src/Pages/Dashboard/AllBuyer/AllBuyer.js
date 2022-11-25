@@ -1,15 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Loading from '../../Share/Loading/Loading';
 
 const AllBuyer = () => {
 
-    const { user } = useContext(AuthContext);
-
     const { data: allbuyers = [], isLoading, refetch } = useQuery({
-        queryKey: ['allbuyers', user?.email],
+        queryKey: ['allbuyers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/allbuyers/${'seller'}`);
             const data = await res.json();
@@ -21,8 +20,18 @@ const AllBuyer = () => {
         return <Loading />;
     }
 
-    console.log(allbuyers);
-
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('delete successfully');
+                    refetch();
+                }
+            });
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -34,7 +43,7 @@ const AllBuyer = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>role</th>
-                        <th>Payment</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +53,7 @@ const AllBuyer = () => {
                             <th>{buyer.name}</th>
                             <td>{buyer.email}</td>
                             <td>{buyer.role}</td>
-                            <td><button className='btn btn-xs btn-secondary'>Delete</button></td>
+                            <td><button onClick={() => handleDelete(buyer._id)} className='btn btn-xs btn-secondary'>Delete</button></td>
 
                         </tr>)
                     }
