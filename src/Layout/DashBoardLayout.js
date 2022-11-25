@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Contexts/AuthProvider';
+import useBuyer from '../hooks/useBuyer';
 import useSeller from '../hooks/useSeller';
 import Navbar from '../Pages/Share/Navbar/Navbar';
 
@@ -10,6 +11,7 @@ const DashBoardLayout = () => {
 
     const { user } = useContext(AuthContext);
     const [isSeller] = useSeller(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
     return (
         <div>
             <Navbar></Navbar>
@@ -24,11 +26,14 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80 text-base-content">
                         {
                             isSeller && <>
-                                <li><Link to="/dashboard/addproduct">Add Product</Link></li>
-                                <li><Link to="/dashboard/products">My Products</Link></li>
+                                <li><Link to="/dashboard/seller/addproduct">Add Product</Link></li>
+                                <li><Link to="/dashboard/seller/products">My Products</Link></li>
                             </>
                         }
-                        <li><Link to="/dashboard/myorders">My Orders</Link></li>
+                        {
+                            isBuyer &&
+                            <li><Link to="/dashboard/buyer/myorders">My Orders</Link></li>
+                        }
 
                         {/* {
                             isAdmin && <>
