@@ -4,6 +4,8 @@ import Main from "../Layout/Main";
 import Blog from "../Pages/Blog/Blog";
 import CategoryProducts from "../Pages/CategoryProducts/CategoryProducts";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import AllBuyer from "../Pages/Dashboard/AllBuyer/AllBuyer";
+import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
 import DashBoard from "../Pages/Dashboard/Dashboard/DashBoard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
@@ -11,6 +13,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
@@ -67,11 +70,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/admin/allsellers',
-                element: <BuyerRoute><MyOrders /></BuyerRoute>
+                element: <AdminRoute><AllSeller /></AdminRoute>
             },
             {
                 path: '/dashboard/admin/allbuyers',
-                element: <BuyerRoute><MyOrders /></BuyerRoute>
+                element: <AdminRoute><AllBuyer /></AdminRoute>
             }
 
         ]
