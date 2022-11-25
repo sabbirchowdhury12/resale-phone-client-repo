@@ -65,6 +65,7 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`Product is added successfully`);
+                            Navigate('/dashboard/myProduts');
                         });
                 }
             });
