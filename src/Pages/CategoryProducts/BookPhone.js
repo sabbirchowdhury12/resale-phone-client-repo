@@ -1,11 +1,50 @@
 import React from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const BookPhone = ({ product, setProduct }) => {
+
     const { user } = useContext(AuthContext);
-    console.log(product);
-    const { modelName, resalePrice } = product;
+    const { modelName, resalePrice, img } = product;
+
+    const handleOrder = (event) => {
+
+        event.preventDefault();
+
+        const form = event.target;
+        const title = form.title.value;
+        const email = form.email.value;
+        const price = form.price.value;
+        const name = form.name.value;
+        const phone = form.phone.value;
+        const location = form.location.value;
+
+        const order = {
+            title,
+            email,
+            price,
+            name,
+            phone,
+            location,
+            img
+        };
+
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setProduct(null);
+                    toast.success(`Product is added successfully`);
+                }
+            });
+    };
 
 
     const handleValue = () => {
@@ -18,15 +57,14 @@ const BookPhone = ({ product, setProduct }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label onClick={handleValue} htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <form className='grid grid-cols-1 gap-3 mt-10'>
-                        <input type="text" disabled defaultValue={modelName} className="input w-full input-bordered " />
-                        <input type="text" disabled defaultValue={resalePrice} className="input w-full input-bordered " />
-                        <input name="name" type="text" disabled defaultValue={user?.displayName} className="input w-full input-bordered" />
-                        <input name="email" type="email" disabled defaultValue={user?.email} className="input w-full input-bordered" />
+                    <form onSubmit={handleOrder} className='grid grid-cols-1 gap-3 mt-10'>
+                        <input type="text" name='title' disabled defaultValue={modelName} className="input w-full input-bordered " />
+                        <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
+                        <input name="price" type="text" disabled defaultValue={resalePrice} placeholder="Price" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
-
                         <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
-
+                        <br />
                         <input className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>
                 </div>
