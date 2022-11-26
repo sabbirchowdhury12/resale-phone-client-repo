@@ -26,7 +26,14 @@ const AddProduct = () => {
         const number = form.number.value;
         const category_id = form.brandName.value;
         const uses = form.uses.value;
+        const status = form.verify.value;
 
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1;
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+
+        const newdate = day + "/" + month + "/" + year;
 
         const img = form.image.files[0];
         const formData = new FormData();
@@ -54,6 +61,8 @@ const AddProduct = () => {
                         number,
                         category_id,
                         uses,
+                        status,
+                        date: newdate
                     };
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
@@ -66,7 +75,7 @@ const AddProduct = () => {
                         .then(data => {
                             if (data.acknowledged) {
                                 toast.success(`Product is added successfully`);
-                                navigate('/dashboard/myProduts');
+                                navigate('/dashboard/products');
                             }
                         });
                 }
@@ -101,6 +110,7 @@ const AddProduct = () => {
                 <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
                 <input name="puchesYear" type="text" placeholder="Year of Purchase" className="input w-full input-bordered" />
                 <input name="uses" type="text" placeholder="Use Time" className="input w-full input-bordered" />
+                <input name="verify" type="text" disabled defaultValue={user?.verify ? user.verified : "unverified"} className="input w-full input-bordered" />
                 <textarea className="textarea w-full input-bordered " rows="5" name="desc" placeholder='Other Information'></textarea>
                 <input className='btn btn-accent w-full' type="submit" value="Submit" />
             </form>

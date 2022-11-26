@@ -8,7 +8,7 @@ const AllSeller = () => {
     const { data: allsellers = [], isLoading, refetch } = useQuery({
         queryKey: ['allsellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allsellers/${'buyer'}`);
+            const res = await fetch(`http://localhost:5000/allsellers/${'seller'}`);
             const data = await res.json();
             return data;
         }
