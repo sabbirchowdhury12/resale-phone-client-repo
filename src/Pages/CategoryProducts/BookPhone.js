@@ -47,6 +47,10 @@ const BookPhone = ({ product, setProduct }) => {
     };
 
 
+    const updateProducts = (id) => {
+        console.log(id);
+    };
+
     const handleValue = () => {
         setProduct(null);
     };
@@ -65,7 +69,7 @@ const BookPhone = ({ product, setProduct }) => {
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
                         <br />
-                        <input className='btn btn-accent w-full' type="submit" value="Submit" />
+                        <input onClick={() => updateProducts(product._id)} className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>
                 </div>
             </div>

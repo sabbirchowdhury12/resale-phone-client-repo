@@ -38,13 +38,15 @@ const AllBuyer = () => {
             <table className="table w-full">
 
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>role</th>
-                        <th>Delete</th>
-                    </tr>
+                    {allbuyers.length ?
+                        < tr >
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>role</th>
+                            <th>Delete</th>
+                        </tr> : <th className='text-center text-2xl mt-5 font-bold '>There is no buyer available.</th>
+                    }
                 </thead>
                 <tbody>
                     {
@@ -59,7 +61,7 @@ const AllBuyer = () => {
                     }
                 </tbody>
             </table>
-        </div>
+        </div >
     );
 };
 

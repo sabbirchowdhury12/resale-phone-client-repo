@@ -46,13 +46,17 @@ const MyProducts = () => {
             <table className="table w-full">
 
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                    </tr>
+                    {
+                        products.length ?
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Delete</th>
+                            </tr> : <th className='text-center text-2xl mt-5 font-bold '>There is no product available.</th>
+                    }
+
                 </thead>
                 <tbody>
                     {

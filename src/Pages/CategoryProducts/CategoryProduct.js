@@ -1,5 +1,7 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import { GoVerified } from 'react-icons/go';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const CategoryProduct = ({ product, setProduct }) => {

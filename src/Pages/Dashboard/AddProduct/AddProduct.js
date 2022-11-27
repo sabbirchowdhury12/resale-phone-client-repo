@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
@@ -9,6 +10,20 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const imageHostKey = "8fd3dbe5918be63ad82f01b3fb69d14a";
+
+    const { data: userIdenty = [] } = useQuery({
+        queryKey: ['users', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/users?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    });
+
 
     const handleAddProduct = (event) => {
         event.preventDefault();
@@ -26,7 +41,7 @@ const AddProduct = () => {
         const number = form.number.value;
         const category_id = form.brandName.value;
         const uses = form.uses.value;
-        const status = form.verify.value;
+        const userStatus = userIdenty.status;
 
         var dateObj = new Date();
         var month = dateObj.getUTCMonth() + 1;
@@ -61,7 +76,7 @@ const AddProduct = () => {
                         number,
                         category_id,
                         uses,
-                        status,
+                        userStatus,
                         date: newdate
                     };
                     fetch('http://localhost:5000/products', {
@@ -110,7 +125,6 @@ const AddProduct = () => {
                 <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
                 <input name="puchesYear" type="text" placeholder="Year of Purchase" className="input w-full input-bordered" />
                 <input name="uses" type="text" placeholder="Use Time" className="input w-full input-bordered" />
-                <input name="verify" type="text" disabled defaultValue={user?.verify ? user.verified : "unverified"} className="input w-full input-bordered" />
                 <textarea className="textarea w-full input-bordered " rows="5" name="desc" placeholder='Other Information'></textarea>
                 <input className='btn btn-accent w-full' type="submit" value="Submit" />
             </form>

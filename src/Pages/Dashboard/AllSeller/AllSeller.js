@@ -50,13 +50,16 @@ const AllSeller = () => {
             <table className="table w-full">
 
                 <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Verify</th>
-                        <th>Delete</th>
-                    </tr>
+                    {allsellers.length ?
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Verify</th>
+                            <th>Delete</th>
+                        </tr> : <th className='text-center text-2xl mt-5 font-bold '>There is no seller available.</th>
+                    }
+
                 </thead>
                 <tbody>
                     {
@@ -64,7 +67,7 @@ const AllSeller = () => {
                             <th>{i + 1}</th>
                             <th>{seller.name}</th>
                             <td>{seller.email}</td>
-                            <td>{seller.verify ?
+                            <td>{seller.status ?
                                 'Verified' :
                                 <button onClick={() => handleVerify(seller._id)} className='btn btn-xs btn-secondary'>Verify</button>
                             }</td>
