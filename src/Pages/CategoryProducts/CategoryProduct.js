@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React from 'react';
 import { GoVerified } from 'react-icons/go';
-import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const CategoryProduct = ({ product, setProduct }) => {
@@ -9,21 +7,22 @@ const CategoryProduct = ({ product, setProduct }) => {
     const { condition, desc, img, location, modelName, number, originalPrice, puchesYear, resalePrice, sellerName, uses, } = product;
 
     return (
+        !product.paid &&
         <div className="card  bg-base-100 shadow-xl">
             <figure><img className='lg:h-96' src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{modelName}</h2>
                 <p className='flex items-center gap-2'>Seller Name: {sellerName} <span className='text-green-600'>{
-                    product.status === 'verified' &&
+                    product.userStatus === 'verified' &&
                     <GoVerified />
                 }
                 </span></p>
                 <p>{desc}</p>
                 <p>Condition: {condition}</p>
-                <div className='lg:flex items-center justify-between'>
-                    <p>Orginal Price: ${originalPrice}</p>
-                    <p>Resale Price: ${resalePrice}</p>
-                </div>
+
+                <p>Orginal Price: ${originalPrice}</p>
+                <p>Resale Price: ${resalePrice}</p>
+
                 <p>Purchase Year: {puchesYear}</p>
                 <p>Use: {uses} year</p>
                 <p>Phone: {number}</p>
@@ -44,6 +43,7 @@ const CategoryProduct = ({ product, setProduct }) => {
                 </div>
             </div>
         </div>
+
     );
 };
 

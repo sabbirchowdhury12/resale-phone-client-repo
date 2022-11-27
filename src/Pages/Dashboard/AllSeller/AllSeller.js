@@ -32,10 +32,18 @@ const AllSeller = () => {
     };
 
     const handleVerify = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
-            method: 'PUT'
+        const user = {
+            _id: id._id,
+            email: id.email
+        };
+        fetch(`http://localhost:5000/users`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(user)
         })
-            .then(res => res.json())
+            .then(res => res.json(user))
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success('verified successfully');
@@ -69,7 +77,7 @@ const AllSeller = () => {
                             <td>{seller.email}</td>
                             <td>{seller.status ?
                                 'Verified' :
-                                <button onClick={() => handleVerify(seller._id)} className='btn btn-xs btn-secondary'>Verify</button>
+                                <button onClick={() => handleVerify(seller)} className='btn btn-xs btn-secondary'>Verify</button>
                             }</td>
                             <td><button onClick={() => handleDelete(seller._id)} className='btn btn-xs btn-secondary'>Delete</button></td>
                         </tr>)

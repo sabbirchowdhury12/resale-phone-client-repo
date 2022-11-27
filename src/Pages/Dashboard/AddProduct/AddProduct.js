@@ -9,7 +9,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const imageHostKey = "8fd3dbe5918be63ad82f01b3fb69d14a";
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
 
     const { data: userIdenty = [] } = useQuery({
         queryKey: ['users', user?.email],
@@ -41,7 +41,7 @@ const AddProduct = () => {
         const number = form.number.value;
         const category_id = form.brandName.value;
         const uses = form.uses.value;
-        const userStatus = userIdenty.status;
+        const userStatus = userIdenty.userStatus;
 
         var dateObj = new Date();
         var month = dateObj.getUTCMonth() + 1;

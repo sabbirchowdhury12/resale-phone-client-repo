@@ -27,7 +27,8 @@ const BookPhone = ({ product, setProduct }) => {
             name,
             phone,
             location,
-            img
+            img,
+            productId: product._id
         };
 
         fetch('http://localhost:5000/orders', {
@@ -48,7 +49,14 @@ const BookPhone = ({ product, setProduct }) => {
 
 
     const updateProducts = (id) => {
-        console.log(id);
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                }
+            });
     };
 
     const handleValue = () => {

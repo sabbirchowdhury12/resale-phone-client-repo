@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { Profiler } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
@@ -22,6 +22,8 @@ const MyProducts = () => {
         }
     });
 
+
+
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/products/${id}`, {
             method: 'DELETE'
@@ -30,6 +32,19 @@ const MyProducts = () => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success('delete successfully');
+                    refetch();
+                }
+            });
+    };
+
+    const handleAdvertise = (id) => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Make advetise successfully');
                     refetch();
                 }
             });
@@ -52,7 +67,7 @@ const MyProducts = () => {
                                 <th></th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Status</th>
+                                <th>Sale Status</th>
                                 <th>Delete</th>
                             </tr> : <th className='text-center text-2xl mt-5 font-bold '>There is no product available.</th>
                     }
@@ -64,8 +79,13 @@ const MyProducts = () => {
                             <th>{i + 1}</th>
                             <td>{product.modelName}</td>
                             <td>{product.resalePrice}</td>
-                            <td>{product.status ? product.status : 'available'}</td>
-                            <td ><button onClick={() => handleDelete(product._id)} className='text-red-600 font-bold text-xl'>X</button></td>
+                            <td>{product.paid ? 'Sold' :
+                                <button onClick={() => handleAdvertise(product._id)} title='click to advertise' className='btn btn-xs'>{product.saleStatus ? product.saleStatus : 'available'}</button>
+                            }
+                            </td>
+                            <td >{product.paid ? 'payment done' :
+                                <button onClick={() => handleDelete(product._id)} className='text-red-600 font-bold text-xl'>X</button>
+                            }</td>
                         </tr>)
                     }
                 </tbody>

@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
@@ -10,17 +11,19 @@ import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { login } = useContext(AuthContext);
+    const { login, signWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const [loginUserEmail, setLoginUserEmail] = useState();
     const [token] = useToken(loginUserEmail);
 
+    const provider = new GoogleAuthProvider();
+
     const from = location.state?.from?.pathname || "/";
 
-    // if (token) {
-    //     navigate(from, { replace: true });
-    // }
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = (data) => {
         login(data.email, data.password)
@@ -29,6 +32,40 @@ const Login = () => {
                 toast.success('login success');
             }).catch(error => console.log(error));
     };
+
+    const handleWithGoogle = () => {
+        signWithGoogle(provider)
+            .then(result => {
+                const user = result.user;
+                const role = 'buyer';
+                saveUser(user.displayName, user.email, role);
+            }).catch(error => console.error(error));
+    };
+
+
+
+    const saveUser = (name, email, role) => {
+
+        const user = {
+            name,
+            email,
+            role,
+        };
+        console.log(user);
+
+        fetch('http://localhost:5000/googleuser', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setLoginUserEmail(email);
+            });
+    };
+
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
@@ -60,7 +97,7 @@ const Login = () => {
                 </form>
                 <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleWithGoogle} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
