@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Contexts/AuthProvider';
 import Loading from '../../Share/Loading/Loading';
 
 const AllBuyer = () => {
@@ -10,7 +8,11 @@ const AllBuyer = () => {
     const { data: allbuyers = [], isLoading, refetch } = useQuery({
         queryKey: ['allbuyers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allbuyers/${'seller'}`);
+            const res = await fetch(`http://localhost:5000/allbuyers/${'seller'}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }

@@ -8,7 +8,11 @@ const AllSeller = () => {
     const { data: allsellers = [], isLoading, refetch } = useQuery({
         queryKey: ['allsellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allsellers/${'seller'}`);
+            const res = await fetch(`http://localhost:5000/allsellers/${'seller'}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -40,6 +44,7 @@ const AllSeller = () => {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(user)
         })

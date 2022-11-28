@@ -1,14 +1,52 @@
 import React from 'react';
+import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { GoVerified } from 'react-icons/go';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const CategoryProduct = ({ product, setProduct }) => {
 
     const { condition, desc, img, location, modelName, number, originalPrice, puchesYear, resalePrice, sellerName, uses, } = product;
 
+    const { user } = useContext(AuthContext);
+
+    const handleRepotedAdmin = (product) => {
+
+        const modelName = product.modelName;
+        const email = user.email;
+        const productId = product._id;
+        const name = product.sellerName;
+        const img = product.img;
+
+        const reportedItem = {
+            modelName,
+            email,
+            productId,
+            name,
+            img
+        };
+        console.log(reportedItem);
+
+        fetch('http://localhost:5000/reportedItem', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(reportedItem)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Reported successfully');
+                }
+            });
+    };
+
     return (
         !product.paid &&
         <div className="card  bg-base-100 shadow-xl">
+            <button onClick={() => handleRepotedAdmin(product)} className='p-2 text-end font-bold'>Report to Admin</button>
             <figure><img className='lg:h-96' src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{modelName}</h2>

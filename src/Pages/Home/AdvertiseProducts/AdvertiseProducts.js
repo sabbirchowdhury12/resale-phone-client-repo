@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../../Share/Loading/Loading';
-import { GoVerified } from 'react-icons/go';
 import BookPhone from '../../CategoryProducts/BookPhone';
 import CategoryProduct from '../../CategoryProducts/CategoryProduct';
 import { useState } from 'react';
@@ -13,7 +12,11 @@ const AdvertiseProducts = () => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/${'advertise'}`);
+            const res = await fetch(`http://localhost:5000/products/${'advertise'}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
