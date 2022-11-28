@@ -85,7 +85,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment /></BuyerRoute>,
-                loader: ({ params }) => fetch(`https://resale-phone-garage.vercel.app/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-phone-garage.vercel.app/orders/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
             }
 
         ]

@@ -16,3 +16,6 @@ Live link: [https://resale-phone-assaignment-12.web.app/](https://resale-phone-a
 - I used  daisy ui.
 - I used different package of react js.
 - In the backend, it used node js and mongodb.
+
+Admin Email: sabbir@chowdhury.com
+password: 123456
