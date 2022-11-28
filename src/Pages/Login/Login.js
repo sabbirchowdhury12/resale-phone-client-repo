@@ -51,10 +51,9 @@ const Login = () => {
             email,
             role,
         };
-        console.log(user);
 
         fetch('http://localhost:5000/googleuser', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
