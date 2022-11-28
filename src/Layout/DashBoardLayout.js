@@ -7,6 +7,7 @@ import useAdmin from '../hooks/useAdmin';
 import useBuyer from '../hooks/useBuyer';
 import useSeller from '../hooks/useSeller';
 import Navbar from '../Pages/Share/Navbar/Navbar';
+import { BiMenu } from 'react-icons/bi';
 
 const DashBoardLayout = () => {
 
@@ -17,7 +18,9 @@ const DashBoardLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <label htmlFor="dashboard-drawer" className='lg:hidden'>open</label>
+            <div className='m-5 '>
+                <label htmlFor="dashboard-drawer" className='lg:hidden w-full text-3xl font-bold'><BiMenu /></label>
+            </div>
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -25,7 +28,7 @@ const DashBoardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content">
+                    <ul className="menu p-4 w-80  bg-blue-800  text-white">
                         {
                             isSeller && <>
                                 <li><Link to="/dashboard">Add Product</Link></li>

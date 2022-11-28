@@ -74,10 +74,10 @@ const BookPhone = ({ product, setProduct }) => {
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="price" type="text" disabled defaultValue={resalePrice} placeholder="Price" className="input w-full input-bordered" />
-                        <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
-                        <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
+                        <input name="phone" type="text" placeholder="Phone Number" required className="input w-full input-bordered" />
+                        <input name="location" type="text" placeholder="Location" required className="input w-full input-bordered" />
                         <br />
-                        <input onClick={() => updateProducts(product._id)} className='btn btn-accent w-full' type="submit" value="Submit" />
+                        <input onClick={() => updateProducts(product._id)} className='btn btn-secondary w-full' type="submit" value="Submit" />
                     </form>
                 </div>
             </div>

@@ -46,7 +46,7 @@ const CategoryProduct = ({ product, setProduct }) => {
     return (
         !product.paid &&
         <div className="card  bg-base-100 shadow-xl">
-            <button onClick={() => handleRepotedAdmin(product)} className='p-2 text-end font-bold'>Report to Admin</button>
+            <button onClick={() => handleRepotedAdmin(product)} className='p-2 text-end font-bold text-secondary'>Report to Admin</button>
             <figure><img className='lg:h-96' src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{modelName}</h2>
@@ -75,7 +75,7 @@ const CategoryProduct = ({ product, setProduct }) => {
                 <div className="card-actions justify-center">
                     <label
                         htmlFor="booking-modal"
-                        className="btn btn-primary text-white"
+                        className="btn btn-secondary w-full text-white"
                         onClick={() => setProduct(product)}
                     >Book Appointment</label>
                 </div>

@@ -28,8 +28,9 @@ const AdvertiseProducts = () => {
 
 
     return (
+        products.length &&
         <div className='container mx-auto'>
-            <h2 className='text-center my-5 text-2xl font-bold underline uppercase'>Advertise Poducts</h2>
+            <h2 className='text-center my-5 text-2xl font-bold underline uppercase '>Advertise Poducts</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-20 mt-10 p-5'>
                 {
                     products.map(product => <CategoryProduct key={product._id} setProduct={setProduct} product={product} />)

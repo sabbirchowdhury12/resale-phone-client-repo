@@ -19,7 +19,7 @@ const ReportedItem = () => {
     }
 
     const handleDelete = (id) => {
-        console.log(id);
+
         fetch(`http://localhost:5000/reportedItem/${id}`, {
             method: 'DELETE'
         })
@@ -34,7 +34,7 @@ const ReportedItem = () => {
 
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-10">
             <table className="table w-full">
 
                 <thead>
@@ -52,10 +52,10 @@ const ReportedItem = () => {
                     {
                         reportedItems.map((reportedItem, i) => <tr key={i}>
                             <th>{i + 1}</th>
-                            <th><img src={reportedItem.img} className='h-20' alt="" /></th>
+                            <th><img src={reportedItem.img} className='h-16' alt="" /></th>
                             <td>{reportedItem.modelName}</td>
                             <td>{reportedItem.email}</td>
-                            <td><button onClick={() => handleDelete(reportedItem._id)}>Delete</button></td>
+                            <td><button className='btn btn-secondary btn-xs' onClick={() => handleDelete(reportedItem._id)}>Delete</button></td>
                         </tr>)
                     }
                 </tbody>

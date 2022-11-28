@@ -92,11 +92,11 @@ const Login = () => {
                     </div>
 
 
-                    <input className='btn btn-accent w-full' value="Login" type="submit" />
+                    <input className='btn btn-secondary w-full' value="Login" type="submit" />
                 </form>
-                <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                <p>Don't have any acount. <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button onClick={handleWithGoogle} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleWithGoogle} className='btn btn-secondary btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
