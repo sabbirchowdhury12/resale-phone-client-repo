@@ -1,6 +1,6 @@
 # ReSale your old phone
 
-Live link: [https://assaignment-bd-tour-11.web.app/](https://assaignment-bd-tour-11.web.app/)
+Live link: [https://resale-phone-assaignment-12.web.app/](https://resale-phone-assaignment-12.web.app/)
 
 ### Website Features
 - This is phone buy and sell website
