@@ -28,7 +28,7 @@ const CategoryProduct = ({ product, setProduct }) => {
         };
         console.log(reportedItem);
 
-        fetch('http://localhost:5000/reportedItem', {
+        fetch('https://resale-phone-garage.vercel.app/reportedItem', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

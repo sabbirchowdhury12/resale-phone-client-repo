@@ -31,7 +31,7 @@ const BookPhone = ({ product, setProduct }) => {
             productId: product._id
         };
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://resale-phone-garage.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +49,7 @@ const BookPhone = ({ product, setProduct }) => {
 
 
     const updateProducts = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://resale-phone-garage.vercel.app/products/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())

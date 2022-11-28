@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryProducts /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-phone-garage.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment /></BuyerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-phone-garage.vercel.app/orders/${params.id}`)
             }
 
         ]

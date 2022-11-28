@@ -14,7 +14,7 @@ const Category = () => {
 
     //axios api call
     useEffect(() => {
-        axios.get('http://localhost:5000/category')
+        axios.get('https://resale-phone-garage.vercel.app/category')
             .then(data => {
                 setCategories(data.data);
             });
@@ -22,7 +22,7 @@ const Category = () => {
 
     // const { data: categories = [], isLoading } = useQuery({
     //     queryKey: ['category'],
-    //     queryFn: () => fetch('http://localhost:5000/category')
+    //     queryFn: () => fetch('https://resale-phone-garage.vercel.app/category')
     //         .then(res => res.json())
     // });
 

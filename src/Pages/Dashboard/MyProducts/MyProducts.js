@@ -12,7 +12,7 @@ const MyProducts = () => {
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+            const res = await fetch(`https://resale-phone-garage.vercel.app/products?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -25,7 +25,7 @@ const MyProducts = () => {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://resale-phone-garage.vercel.app/products/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -38,7 +38,7 @@ const MyProducts = () => {
     };
 
     const handleAdvertise = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://resale-phone-garage.vercel.app/products/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())

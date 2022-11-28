@@ -52,7 +52,7 @@ const Login = () => {
             role,
         };
 
-        fetch('http://localhost:5000/googleuser', {
+        fetch('https://resale-phone-garage.vercel.app/googleuser', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
