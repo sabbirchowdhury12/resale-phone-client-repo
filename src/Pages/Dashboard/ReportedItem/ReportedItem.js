@@ -45,7 +45,7 @@ const ReportedItem = () => {
                             <th>Name</th>
                             <th>email</th>
                             <th>Payment</th>
-                        </tr> : <th className='text-center text-2xl'>You have no oder.</th>
+                        </tr> : <th className='text-center text-2xl'>You have no Reported Item.</th>
                     }
                 </thead>
                 <tbody>

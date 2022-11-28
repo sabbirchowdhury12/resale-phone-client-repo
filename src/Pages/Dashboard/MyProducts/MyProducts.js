@@ -39,7 +39,12 @@ const MyProducts = () => {
 
     const handleAdvertise = (id) => {
         fetch(`https://resale-phone-garage.vercel.app/products/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+
         })
             .then(res => res.json())
             .then(data => {
