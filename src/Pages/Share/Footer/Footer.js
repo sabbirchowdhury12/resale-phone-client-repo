@@ -6,10 +6,10 @@ const Footer = () => {
         <div className='mt-20 bg-blue-800 text-white'>
             <footer className="footer footer-center p-10 text-white  rounded">
                 <div className="grid grid-flow-col gap-4">
-                    <Link className="link link-hover">About us</Link>
-                    <Link className="link link-hover">Contact</Link>
-                    <Link className="link link-hover">Jobs</Link>
-                    <Link className="link link-hover">Press kit</Link>
+                    <Link className="link link-hover" to='/'>Home</Link>
+                    <Link className="link link-hover" to='/blog'>Blog</Link>
+                    <Link className="link link-hover" to='/dashboard'>Dashboard</Link>
+
                 </div>
                 <div>
                     <div className="grid grid-flow-col gap-4">
@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © 2022 - Sabbir Chowdhury</p>
                 </div>
             </footer>
         </div>
