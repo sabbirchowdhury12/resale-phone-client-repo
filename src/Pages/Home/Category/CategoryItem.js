@@ -10,9 +10,10 @@ const CategoryItem = ({ category }) => {
             <div className="card-body">
 
                 <div className='flex text-center items-center justify-center p-2'>
-                    <Link to={`/category/${category.category_id}`}><p className='text-center font-bold text-2xl text-secondary ' >{category.category_name} </p>
+                    <Link to={`/category/${category.category_id}`} className='flex'><p className='text-center font-bold text-2xl text-secondary ' >{category.category_name} </p>
+                        <BsFillArrowRightCircleFill className='text-secondary  ml-2 text-3xl pt-2' />
                     </Link>
-                    <BsFillArrowRightCircleFill className='text-secondary ml-2 text-3xl pt-2' />
+
                 </div>
             </div>
         </div>
